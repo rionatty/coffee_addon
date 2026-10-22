@@ -23,6 +23,20 @@ takes the net weight as its quantity and the price paid as its rate, so
 the coffee reaches the store and the supplier is owed the same figures the
 note shows.
 
+### Demo masters
+
+One command builds the books for a coffee demo, and is safe to run again:
+
+```bash
+bench --site your-site execute coffee_addon.coffee_addon.demo_setup.run --kwargs "{'company': 'Your Company'}"
+```
+
+Screen 18, 15 and 12 each get their own active Stock, Sales and Cost of
+Sales ledgers, their own store and item group, and a finished-goods item
+named for the screen (Robusta Screen 18). Undergrades, by-products and the
+raw coffee get the same treatment, plus a farmer, two customers, prices and
+a USD rate. See `coffee_addon/coffee_addon/demo_setup.py`.
+
 ### Install
 
 ```bash
