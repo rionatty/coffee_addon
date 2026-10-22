@@ -1,0 +1,17 @@
+account_name,parent_account,company,is_group,account_type
+Raw Coffee Stock,Stock Assets - ICL,Ideal Commodities (U) Ltd,0,Stock
+Screen 18 Stock,Stock Assets - ICL,Ideal Commodities (U) Ltd,0,Stock
+Screen 15 Stock,Stock Assets - ICL,Ideal Commodities (U) Ltd,0,Stock
+Screen 12 Stock,Stock Assets - ICL,Ideal Commodities (U) Ltd,0,Stock
+Undergrades Stock,Stock Assets - ICL,Ideal Commodities (U) Ltd,0,Stock
+By-products Stock,Stock Assets - ICL,Ideal Commodities (U) Ltd,0,Stock
+Screen 18 Sales,Direct Income - ICL,Ideal Commodities (U) Ltd,0,Income Account
+Screen 15 Sales,Direct Income - ICL,Ideal Commodities (U) Ltd,0,Income Account
+Screen 12 Sales,Direct Income - ICL,Ideal Commodities (U) Ltd,0,Income Account
+Undergrade Sales,Direct Income - ICL,Ideal Commodities (U) Ltd,0,Income Account
+By-product Sales,Direct Income - ICL,Ideal Commodities (U) Ltd,0,Income Account
+Screen 18 Cost of Sales,Stock Expenses - ICL,Ideal Commodities (U) Ltd,0,Cost of Goods Sold
+Screen 15 Cost of Sales,Stock Expenses - ICL,Ideal Commodities (U) Ltd,0,Cost of Goods Sold
+Screen 12 Cost of Sales,Stock Expenses - ICL,Ideal Commodities (U) Ltd,0,Cost of Goods Sold
+Undergrade Cost of Sales,Stock Expenses - ICL,Ideal Commodities (U) Ltd,0,Cost of Goods Sold
+By-product Cost of Sales,Stock Expenses - ICL,Ideal Commodities (U) Ltd,0,Cost of Goods Sold

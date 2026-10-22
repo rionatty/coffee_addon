@@ -1,0 +1,12 @@
+item_code,item_name,item_group,stock_uom,is_stock_item,include_item_in_manufacturing,is_sales_item,is_purchase_item,description
+Robusta FAQ,Robusta FAQ,Raw Coffee,Kg,1,1,0,1,Robusta FAQ
+Robusta Screen 18,Robusta Screen 18,Screen 18,Kg,1,1,1,0,Robusta Screen 18
+Robusta Screen 15,Robusta Screen 15,Screen 15,Kg,1,1,1,0,Robusta Screen 15
+Robusta Screen 12,Robusta Screen 12,Screen 12,Kg,1,1,1,0,Robusta Screen 12
+Robusta BHP 1199,Robusta BHP 1199,Undergrades,Kg,1,1,1,0,Robusta BHP 1199
+Robusta Triage,Robusta Triage,Undergrades,Kg,1,1,1,0,Robusta Triage
+Robusta Blacks,Robusta Blacks,Undergrades,Kg,1,1,1,0,Robusta Blacks
+Robusta Browns,Robusta Browns,Undergrades,Kg,1,1,1,0,Robusta Browns
+Robusta Pods,Robusta Pods,Undergrades,Kg,1,1,1,0,Robusta Pods
+Coffee Dust,Coffee Dust,By-products,Kg,1,1,1,0,Coffee Dust
+Coffee Husks,Coffee Husks,By-products,Kg,1,1,1,0,Coffee Husks
