@@ -31,11 +31,14 @@ One command builds the books for a coffee demo, and is safe to run again:
 bench --site your-site execute coffee_addon.coffee_addon.demo_setup.run --kwargs "{'company': 'Your Company'}"
 ```
 
-Screen 18, 15 and 12 each get their own active Stock, Sales and Cost of
-Sales ledgers, their own store and item group, and a finished-goods item
-named for the screen (Robusta Screen 18). Undergrades, by-products and the
-raw coffee get the same treatment, plus a farmer, two customers, prices and
-a USD rate. See `coffee_addon/coffee_addon/demo_setup.py`.
+Coffee type is the group and the screens are the ledgers under it, in
+stock, sales and cost of sales: Robusta Stock > Robusta Screen 18 Stock,
+Arabica Stock > Arabica Screen 18 Stock, and so on, with dust and husks on
+shared By-products ledgers. Each line has its own store posting to its Stock
+ledger, and its items default that store and their own Sales and Cost of
+Sales ledgers. Item groups are by screen, across both coffees. The same
+masters ship as Data Import files, with the client's chart of accounts, in
+`demo_import/`. See `coffee_addon/coffee_addon/demo_setup.py`.
 
 ### Install
 

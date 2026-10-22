@@ -1,12 +1,20 @@
-item_code,item_name,item_group,stock_uom,is_stock_item,include_item_in_manufacturing,is_sales_item,is_purchase_item,description
-Robusta FAQ,Robusta FAQ,Raw Coffee,Kg,1,1,0,1,Robusta FAQ
-Robusta Screen 18,Robusta Screen 18,Screen 18,Kg,1,1,1,0,Robusta Screen 18
-Robusta Screen 15,Robusta Screen 15,Screen 15,Kg,1,1,1,0,Robusta Screen 15
-Robusta Screen 12,Robusta Screen 12,Screen 12,Kg,1,1,1,0,Robusta Screen 12
-Robusta BHP 1199,Robusta BHP 1199,Undergrades,Kg,1,1,1,0,Robusta BHP 1199
-Robusta Triage,Robusta Triage,Undergrades,Kg,1,1,1,0,Robusta Triage
-Robusta Blacks,Robusta Blacks,Undergrades,Kg,1,1,1,0,Robusta Blacks
-Robusta Browns,Robusta Browns,Undergrades,Kg,1,1,1,0,Robusta Browns
-Robusta Pods,Robusta Pods,Undergrades,Kg,1,1,1,0,Robusta Pods
-Coffee Dust,Coffee Dust,By-products,Kg,1,1,1,0,Coffee Dust
-Coffee Husks,Coffee Husks,By-products,Kg,1,1,1,0,Coffee Husks
+item_code,item_name,item_group,stock_uom,is_stock_item,include_item_in_manufacturing,is_sales_item,is_purchase_item,description,item_defaults.company,item_defaults.default_warehouse,item_defaults.income_account,item_defaults.expense_account
+Robusta FAQ,Robusta FAQ,Raw Coffee,Kg,1,1,0,1,Robusta FAQ,Ideal Commodities (U) Ltd,Robusta FAQ Store - ICL,,
+Robusta Screen 18,Robusta Screen 18,Screen 18,Kg,1,1,1,0,Robusta Screen 18,Ideal Commodities (U) Ltd,Robusta Screen 18 Store - ICL,41010111 - Robusta Screen 18 Sales - ICL,51010111 - Robusta Screen 18 Cost of Sales - ICL
+Robusta Screen 15,Robusta Screen 15,Screen 15,Kg,1,1,1,0,Robusta Screen 15,Ideal Commodities (U) Ltd,Robusta Screen 15 Store - ICL,41010112 - Robusta Screen 15 Sales - ICL,51010112 - Robusta Screen 15 Cost of Sales - ICL
+Robusta Screen 12,Robusta Screen 12,Screen 12,Kg,1,1,1,0,Robusta Screen 12,Ideal Commodities (U) Ltd,Robusta Screen 12 Store - ICL,41010113 - Robusta Screen 12 Sales - ICL,51010113 - Robusta Screen 12 Cost of Sales - ICL
+Robusta BHP 1199,Robusta BHP 1199,Undergrades,Kg,1,1,1,0,Robusta BHP 1199,Ideal Commodities (U) Ltd,Robusta Undergrades Store - ICL,41010114 - Robusta Undergrade Sales - ICL,51010114 - Robusta Undergrade Cost of Sales - ICL
+Robusta Triage,Robusta Triage,Undergrades,Kg,1,1,1,0,Robusta Triage,Ideal Commodities (U) Ltd,Robusta Undergrades Store - ICL,41010114 - Robusta Undergrade Sales - ICL,51010114 - Robusta Undergrade Cost of Sales - ICL
+Robusta Blacks,Robusta Blacks,Undergrades,Kg,1,1,1,0,Robusta Blacks,Ideal Commodities (U) Ltd,Robusta Undergrades Store - ICL,41010114 - Robusta Undergrade Sales - ICL,51010114 - Robusta Undergrade Cost of Sales - ICL
+Robusta Browns,Robusta Browns,Undergrades,Kg,1,1,1,0,Robusta Browns,Ideal Commodities (U) Ltd,Robusta Undergrades Store - ICL,41010114 - Robusta Undergrade Sales - ICL,51010114 - Robusta Undergrade Cost of Sales - ICL
+Robusta Pods,Robusta Pods,Undergrades,Kg,1,1,1,0,Robusta Pods,Ideal Commodities (U) Ltd,Robusta Undergrades Store - ICL,41010114 - Robusta Undergrade Sales - ICL,51010114 - Robusta Undergrade Cost of Sales - ICL
+Arabica Parchment,Arabica Parchment,Raw Coffee,Kg,1,1,0,1,Arabica Parchment,Ideal Commodities (U) Ltd,Arabica Parchment Store - ICL,,
+Arabica Screen 18,Arabica Screen 18,Screen 18,Kg,1,1,1,0,Arabica Screen 18,Ideal Commodities (U) Ltd,Arabica Screen 18 Store - ICL,41010121 - Arabica Screen 18 Sales - ICL,51010121 - Arabica Screen 18 Cost of Sales - ICL
+Arabica Screen 15,Arabica Screen 15,Screen 15,Kg,1,1,1,0,Arabica Screen 15,Ideal Commodities (U) Ltd,Arabica Screen 15 Store - ICL,41010122 - Arabica Screen 15 Sales - ICL,51010122 - Arabica Screen 15 Cost of Sales - ICL
+Arabica Screen 12,Arabica Screen 12,Screen 12,Kg,1,1,1,0,Arabica Screen 12,Ideal Commodities (U) Ltd,Arabica Screen 12 Store - ICL,41010123 - Arabica Screen 12 Sales - ICL,51010123 - Arabica Screen 12 Cost of Sales - ICL
+Arabica Triage,Arabica Triage,Undergrades,Kg,1,1,1,0,Arabica Triage,Ideal Commodities (U) Ltd,Arabica Undergrades Store - ICL,41010124 - Arabica Undergrade Sales - ICL,51010124 - Arabica Undergrade Cost of Sales - ICL
+Arabica Blacks,Arabica Blacks,Undergrades,Kg,1,1,1,0,Arabica Blacks,Ideal Commodities (U) Ltd,Arabica Undergrades Store - ICL,41010124 - Arabica Undergrade Sales - ICL,51010124 - Arabica Undergrade Cost of Sales - ICL
+Arabica Browns,Arabica Browns,Undergrades,Kg,1,1,1,0,Arabica Browns,Ideal Commodities (U) Ltd,Arabica Undergrades Store - ICL,41010124 - Arabica Undergrade Sales - ICL,51010124 - Arabica Undergrade Cost of Sales - ICL
+Arabica Pods,Arabica Pods,Undergrades,Kg,1,1,1,0,Arabica Pods,Ideal Commodities (U) Ltd,Arabica Undergrades Store - ICL,41010124 - Arabica Undergrade Sales - ICL,51010124 - Arabica Undergrade Cost of Sales - ICL
+Coffee Dust,Coffee Dust,By-products,Kg,1,1,1,0,Coffee Dust,Ideal Commodities (U) Ltd,By-products Store - ICL,41010130 - By-product Sales - ICL,51010130 - By-product Cost of Sales - ICL
+Coffee Husks,Coffee Husks,By-products,Kg,1,1,1,0,Coffee Husks,Ideal Commodities (U) Ltd,By-products Store - ICL,41010130 - By-product Sales - ICL,51010130 - By-product Cost of Sales - ICL

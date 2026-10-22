@@ -3,26 +3,32 @@
 
 """The coffee demo's masters, built in one command:
 
-	bench --site SITE execute coffee_addon.coffee_addon.demo_setup.run
 	bench --site SITE execute coffee_addon.coffee_addon.demo_setup.run --kwargs "{'company': 'Your Company'}"
 
-Each screen is its own line through the books. Screen 18, 15 and 12 each get
-	* their own active ledgers: Screen 18 Stock, Screen 18 Sales and
-	  Screen 18 Cost of Sales;
-	* their own store, whose stock posts to that Stock ledger;
-	* their own item group under Finished Goods, which defaults the store and
-	  the Sales and Cost of Sales ledgers onto every document;
-	* a finished-goods item carrying the screen in its name: Robusta Screen 18.
-So the balance sheet shows the coffee held per screen and the profit and
-loss the margin per screen, with nothing to pick on each document.
+Coffee type is the group and the screens are ledgers under it, in stock,
+sales and cost of sales alike:
 
-The undergrades and the by-products are one line each in the same way, and
-the raw coffee bought at the weighbridge has its own store and ledger. Also
-made: the farmer on GRN 1731 as a supplier, an export and a local customer,
-buying and selling prices, and a USD rate. The prices and the rate are demo
-figures — change them in the desk as you like.
+	12010110 Robusta Stock                41010110 Robusta Sales
+		12010111 Robusta FAQ Stock            41010111 Robusta Screen 18 Sales
+		12010112 Robusta Screen 18 Stock      ...
+		...
+	12010120 Arabica Stock                41010120 Arabica Sales
+		...                                   ...
+	12010130 By-products Stock            41010130 By-product Sales
 
-Safe to run again: anything that already exists is left exactly as it is.
+so the balance sheet and the P&L show Robusta and Arabica side by side, and
+each screen within them. Each line has its own store posting to its Stock
+ledger (under a Robusta Stores or Arabica Stores group), and its items carry
+that store and their Sales and Cost of Sales ledgers as their defaults. The
+item groups are by screen (Screen 18 holds Robusta Screen 18 and Arabica
+Screen 18), so stock and sales can also be read across both types.
+
+The same masters as demo_import/ (the client's chart of accounts and the
+Data Import files). Run it after importing the chart to fill in the rest, or
+on ERPNext's standard chart, where it also adds the coffee ledgers.
+
+Prices and the USD rate are demo figures. Safe to run again: anything that
+already exists, including defaults set in the desk, is left as it is.
 """
 
 from collections import namedtuple
@@ -31,46 +37,70 @@ import frappe
 from frappe import _
 from frappe.utils import nowdate
 
-Line = namedtuple("Line", "group parent store stock sales cost items")
+Line = namedtuple("Line", "coffee_type item_group store stock sales cost items")
 
-FINISHED_GOODS = "Finished Goods"
-ROOT_GROUP = "All Item Groups"
-RAW_COFFEE_GROUP = "Raw Coffee"
+TYPES = {
+	"Robusta": {"stock": ("12010110", "Robusta Stock"), "sales": ("41010110", "Robusta Sales"),
+		"cost": ("51010110", "Robusta Cost of Sales"), "stores": "Robusta Stores"},
+	"Arabica": {"stock": ("12010120", "Arabica Stock"), "sales": ("41010120", "Arabica Sales"),
+		"cost": ("51010120", "Arabica Cost of Sales"), "stores": "Arabica Stores"},
+}
 
 LINES = (
-	Line(RAW_COFFEE_GROUP, ROOT_GROUP, "Raw Coffee Store", "Raw Coffee Stock", None, None, ("Robusta FAQ",)),
-	Line("Screen 18", FINISHED_GOODS, "Screen 18 Store", "Screen 18 Stock", "Screen 18 Sales",
-		"Screen 18 Cost of Sales", ("Robusta Screen 18",)),
-	Line("Screen 15", FINISHED_GOODS, "Screen 15 Store", "Screen 15 Stock", "Screen 15 Sales",
-		"Screen 15 Cost of Sales", ("Robusta Screen 15",)),
-	Line("Screen 12", FINISHED_GOODS, "Screen 12 Store", "Screen 12 Stock", "Screen 12 Sales",
-		"Screen 12 Cost of Sales", ("Robusta Screen 12",)),
-	# The five undergrades. 1199 is on the GRN's yields; rename the others to
-	# the client's own names once they are confirmed.
-	Line("Undergrades", FINISHED_GOODS, "Undergrades Store", "Undergrades Stock", "Undergrade Sales",
-		"Undergrade Cost of Sales",
+	Line("Robusta", "Raw Coffee", "Robusta FAQ Store", ("12010111", "Robusta FAQ Stock"), None, None,
+		("Robusta FAQ",)),
+	Line("Robusta", "Screen 18", "Robusta Screen 18 Store", ("12010112", "Robusta Screen 18 Stock"),
+		("41010111", "Robusta Screen 18 Sales"), ("51010111", "Robusta Screen 18 Cost of Sales"), ("Robusta Screen 18",)),
+	Line("Robusta", "Screen 15", "Robusta Screen 15 Store", ("12010113", "Robusta Screen 15 Stock"),
+		("41010112", "Robusta Screen 15 Sales"), ("51010112", "Robusta Screen 15 Cost of Sales"), ("Robusta Screen 15",)),
+	Line("Robusta", "Screen 12", "Robusta Screen 12 Store", ("12010114", "Robusta Screen 12 Stock"),
+		("41010113", "Robusta Screen 12 Sales"), ("51010113", "Robusta Screen 12 Cost of Sales"), ("Robusta Screen 12",)),
+	# BHP 1199 is on the GRN's yields; rename the other undergrades to the
+	# client's own names once they are confirmed.
+	Line("Robusta", "Undergrades", "Robusta Undergrades Store", ("12010115", "Robusta Undergrades Stock"),
+		("41010114", "Robusta Undergrade Sales"), ("51010114", "Robusta Undergrade Cost of Sales"),
 		("Robusta BHP 1199", "Robusta Triage", "Robusta Blacks", "Robusta Browns", "Robusta Pods")),
-	Line("By-products", ROOT_GROUP, "By-products Store", "By-products Stock", "By-product Sales",
-		"By-product Cost of Sales", ("Coffee Dust", "Coffee Husks")),
+	Line("Arabica", "Raw Coffee", "Arabica Parchment Store", ("12010121", "Arabica Parchment Stock"), None, None,
+		("Arabica Parchment",)),
+	Line("Arabica", "Screen 18", "Arabica Screen 18 Store", ("12010122", "Arabica Screen 18 Stock"),
+		("41010121", "Arabica Screen 18 Sales"), ("51010121", "Arabica Screen 18 Cost of Sales"), ("Arabica Screen 18",)),
+	Line("Arabica", "Screen 15", "Arabica Screen 15 Store", ("12010123", "Arabica Screen 15 Stock"),
+		("41010122", "Arabica Screen 15 Sales"), ("51010122", "Arabica Screen 15 Cost of Sales"), ("Arabica Screen 15",)),
+	Line("Arabica", "Screen 12", "Arabica Screen 12 Store", ("12010124", "Arabica Screen 12 Stock"),
+		("41010123", "Arabica Screen 12 Sales"), ("51010123", "Arabica Screen 12 Cost of Sales"), ("Arabica Screen 12",)),
+	Line("Arabica", "Undergrades", "Arabica Undergrades Store", ("12010125", "Arabica Undergrades Stock"),
+		("41010124", "Arabica Undergrade Sales"), ("51010124", "Arabica Undergrade Cost of Sales"),
+		("Arabica Triage", "Arabica Blacks", "Arabica Browns", "Arabica Pods")),
+	# dust and husks come from both types
+	Line(None, "By-products", "By-products Store", ("12010130", "By-products Stock"),
+		("41010130", "By-product Sales"), ("51010130", "By-product Cost of Sales"), ("Coffee Dust", "Coffee Husks")),
 )
 
+ROOT_GROUP = "All Item Groups"
+FINISHED_GOODS = "Finished Goods"
+RAW_COFFEE_GROUP = "Raw Coffee"
+ITEM_GROUPS = (  # (name, parent, is_group), parents first
+	(FINISHED_GOODS, ROOT_GROUP, 1),
+	(RAW_COFFEE_GROUP, ROOT_GROUP, 0),
+	("Screen 18", FINISHED_GOODS, 0),
+	("Screen 15", FINISHED_GOODS, 0),
+	("Screen 12", FINISHED_GOODS, 0),
+	("Undergrades", FINISHED_GOODS, 0),
+	("By-products", ROOT_GROUP, 0),
+)
 UOM = "Kg"
 
 BUYING_PRICE_LIST = "Standard Buying"
 SELLING_PRICE_LIST = "Standard Selling"
 EXPORT_PRICE_LIST = "Export (USD)"
 
-# Demo figures. The buying price is the one paid on GRN 1731.
-BUYING_PRICES = {"Robusta FAQ": 11800}
+# Demo figures. The Robusta buying price is the one paid on GRN 1731.
+BUYING_PRICES = {"Robusta FAQ": 11800, "Arabica Parchment": 14500}
 EXPORT_PRICES = {
-	"Robusta Screen 18": 5.20,
-	"Robusta Screen 15": 4.95,
-	"Robusta Screen 12": 4.60,
-	"Robusta BHP 1199": 3.10,
-	"Robusta Triage": 2.60,
-	"Robusta Blacks": 2.20,
-	"Robusta Browns": 2.40,
-	"Robusta Pods": 1.80,
+	"Robusta Screen 18": 5.20, "Robusta Screen 15": 4.95, "Robusta Screen 12": 4.60,
+	"Robusta BHP 1199": 3.10, "Robusta Triage": 2.60, "Robusta Blacks": 2.20, "Robusta Browns": 2.40, "Robusta Pods": 1.80,
+	"Arabica Screen 18": 6.80, "Arabica Screen 15": 6.40, "Arabica Screen 12": 5.90,
+	"Arabica Triage": 3.20, "Arabica Blacks": 2.60, "Arabica Browns": 2.80, "Arabica Pods": 2.10,
 }
 LOCAL_PRICES = {"Coffee Dust": 1500, "Coffee Husks": 100}
 USD_RATE = 3650
@@ -105,24 +135,33 @@ def run(company=None):
 
 	log = Log()
 	currency = frappe.get_cached_value("Company", company, "default_currency")
-	parents = ledger_parents(company)
+	parents = LedgerParents(company)
 
 	ensure_uom(log)
-	ensure_item_group(log, FINISHED_GOODS, ROOT_GROUP, is_group=1)
+	for name, parent, is_group in ITEM_GROUPS:
+		ensure_item_group(log, name, parent, is_group)
+
+	type_groups = {}
+	for coffee_type, ledgers in TYPES.items():
+		type_groups[coffee_type] = {
+			"stock": ensure_account(log, company, ledgers["stock"], parents.stock, "Stock", is_group=1),
+			"sales": ensure_account(log, company, ledgers["sales"], parents.income, None, is_group=1),
+			"cost": ensure_account(log, company, ledgers["cost"], parents.cost, None, is_group=1),
+			"stores": ensure_warehouse(log, company, ledgers["stores"], None, is_group=1),
+		}
 
 	for line in LINES:
-		stock = ensure_account(log, company, line.stock, parents["stock"], "Stock")
-		sales = line.sales and ensure_account(log, company, line.sales, parents["income"], "Income Account")
-		cost = line.cost and ensure_account(log, company, line.cost, parents["cost"], "Cost of Goods Sold")
-		store = ensure_warehouse(log, company, line.store, stock)
-		ensure_item_group(
-			log,
-			line.group,
-			line.parent,
-			defaults={"company": company, "default_warehouse": store, "income_account": sales, "expense_account": cost},
-		)
+		group = type_groups.get(line.coffee_type)
+		stock = ensure_account(log, company, line.stock, (lambda g=group: g["stock"]) if group else parents.stock, "Stock")
+		sales = line.sales and ensure_account(
+			log, company, line.sales, (lambda g=group: g["sales"]) if group else parents.income, "Income Account")
+		cost = line.cost and ensure_account(
+			log, company, line.cost, (lambda g=group: g["cost"]) if group else parents.cost, "Cost of Goods Sold")
+		store = ensure_warehouse(log, company, line.store, stock, parent=group["stores"] if group else None)
+		defaults = {"company": company, "default_warehouse": store, "income_account": sales, "expense_account": cost}
 		for item_code in line.items:
-			ensure_item(log, item_code, line.group, sells=bool(line.sales), buys=line.group == RAW_COFFEE_GROUP)
+			ensure_item(log, item_code, line.item_group, defaults,
+				sells=bool(line.sales), buys=line.item_group == RAW_COFFEE_GROUP)
 
 	ensure_price_list(log, BUYING_PRICE_LIST, currency, buying=1)
 	ensure_price_list(log, SELLING_PRICE_LIST, currency, selling=1)
@@ -145,36 +184,42 @@ def run(company=None):
 	return {"made": log.made, "kept": log.kept}
 
 
-def ledger_parents(company):
-	"""The group accounts the new ledgers go under: beside the company's own
-	stock, sales and cost of goods sold ledgers."""
-	defaults = frappe.get_cached_value(
-		"Company",
-		company,
-		["default_inventory_account", "default_income_account", "default_expense_account"],
-		as_dict=True,
-	)
+class LedgerParents:
+	"""Where new ledgers go: beside the company's own stock, sales and cost of
+	goods sold ledgers. Looked up only when a ledger has to be created, so a
+	company whose chart already has them (the client's imported chart) needs
+	none of this."""
 
-	def parent_of(account, *group_names):
-		parent = account and frappe.db.get_value("Account", account, "parent_account")
-		if parent:
-			return parent
-		for account_name in group_names:
-			found = frappe.db.get_value("Account", {"company": company, "is_group": 1, "account_name": account_name})
-			if found:
-				return found
-		frappe.throw(
-			_("{0} has no {1} account to put the coffee ledgers beside. Set it on the Company first.").format(
-				company, group_names[0]
-			),
-			title=_("Coffee demo"),
-		)
+	def __init__(self, company):
+		self.company = company
+		self._found = {}
 
-	return {
-		"stock": parent_of(defaults.default_inventory_account, "Stock Assets"),
-		"income": parent_of(defaults.default_income_account, "Direct Income", "Income"),
-		"cost": parent_of(defaults.default_expense_account, "Stock Expenses", "Direct Expenses"),
-	}
+	def stock(self):
+		return self._find("default_inventory_account", "Stock Assets")
+
+	def income(self):
+		return self._find("default_income_account", "Direct Income", "Income")
+
+	def cost(self):
+		return self._find("default_expense_account", "Stock Expenses", "Direct Expenses")
+
+	def _find(self, company_field, *group_names):
+		if company_field not in self._found:
+			account = frappe.get_cached_value("Company", self.company, company_field)
+			parent = account and frappe.db.get_value("Account", account, "parent_account")
+			for account_name in group_names:
+				if parent:
+					break
+				parent = frappe.db.get_value("Account", {"company": self.company, "is_group": 1, "account_name": account_name})
+			if not parent:
+				frappe.throw(
+					_("{0} has no {1} account to put the coffee ledgers beside. Set it on the Company first.").format(
+						self.company, group_names[0]
+					),
+					title=_("Coffee demo"),
+				)
+			self._found[company_field] = parent
+		return self._found[company_field]
 
 
 def ensure_uom(log):
@@ -184,7 +229,9 @@ def ensure_uom(log):
 	return log.note(True, "UOM", UOM)
 
 
-def ensure_account(log, company, account_name, parent, account_type):
+def ensure_account(log, company, number_name, parent, account_type, is_group=0):
+	"""`parent` is called only when the ledger has to be created."""
+	number, account_name = number_name
 	existing = frappe.db.get_value("Account", {"company": company, "account_name": account_name})
 	if existing:
 		return log.note(False, "Account", existing)
@@ -192,73 +239,82 @@ def ensure_account(log, company, account_name, parent, account_type):
 		"doctype": "Account",
 		"company": company,
 		"account_name": account_name,
-		"parent_account": parent,
-		"is_group": 0,
+		"account_number": number,
+		"parent_account": parent(),
+		"is_group": is_group,
 		"account_type": account_type,
 	}).insert(ignore_permissions=True)
 	return log.note(True, "Account", doc.name)
 
 
-def ensure_warehouse(log, company, warehouse_name, account):
+def ensure_warehouse(log, company, warehouse_name, account, is_group=0, parent=None):
 	existing = frappe.db.get_value("Warehouse", {"company": company, "warehouse_name": warehouse_name})
 	if existing:
 		return log.note(False, "Warehouse", existing)
-	root = frappe.get_all(
-		"Warehouse", filters={"company": company, "is_group": 1}, pluck="name", order_by="lft asc", limit=1
-	)
+	if not parent:
+		# the company's top store group ("All Warehouses"), not just any group
+		groups = frappe.get_all(
+			"Warehouse",
+			filters={"company": company, "is_group": 1},
+			fields=["name", "parent_warehouse"],
+			order_by="lft asc",
+		)
+		parent = next((g.name for g in groups if not g.parent_warehouse), None)
 	doc = frappe.get_doc({
 		"doctype": "Warehouse",
 		"warehouse_name": warehouse_name,
 		"company": company,
-		"parent_warehouse": root[0] if root else None,
-		"is_group": 0,
+		"parent_warehouse": parent,
+		"is_group": is_group,
 		"account": account,
 	}).insert(ignore_permissions=True)
 	return log.note(True, "Warehouse", doc.name)
 
 
-def ensure_item_group(log, name, parent, is_group=0, defaults=None):
-	created = not frappe.db.exists("Item Group", name)
+def ensure_item_group(log, name, parent, is_group=0):
+	if frappe.db.exists("Item Group", name):
+		return log.note(False, "Item Group", name)
+	frappe.get_doc({
+		"doctype": "Item Group",
+		"item_group_name": name,
+		"parent_item_group": parent,
+		"is_group": is_group,
+	}).insert(ignore_permissions=True)
+	return log.note(True, "Item Group", name)
+
+
+def ensure_item(log, item_code, item_group, defaults, sells, buys):
+	"""Each item carries its own store and ledgers, so Robusta Screen 18 and
+	Arabica Screen 18 share the Screen 18 group yet post to their own
+	ledgers. Defaults are only added for a company that has none on the item,
+	so any set in the desk are never overwritten."""
+	created = not frappe.db.exists("Item", item_code)
 	if created:
 		doc = frappe.get_doc({
-			"doctype": "Item Group",
-			"item_group_name": name,
-			"parent_item_group": parent,
-			"is_group": is_group,
+			"doctype": "Item",
+			"item_code": item_code,
+			"item_name": item_code,
+			"description": item_code,
+			"item_group": item_group,
+			"stock_uom": UOM,
+			"is_stock_item": 1,
+			"include_item_in_manufacturing": 1,
+			"is_sales_item": int(sells),
+			"is_purchase_item": int(buys),
 		})
 	else:
-		doc = frappe.get_doc("Item Group", name)
+		doc = frappe.get_doc("Item", item_code)
 
-	# Only add this company's defaults when the group has none for it, so
-	# defaults someone has set in the desk are never overwritten.
 	changed = False
-	if defaults and not any(row.company == defaults["company"] for row in doc.get("item_group_defaults") or []):
-		doc.append("item_group_defaults", {key: value for key, value in defaults.items() if value})
+	if not any(row.company == defaults["company"] for row in doc.get("item_defaults") or []):
+		doc.append("item_defaults", {key: value for key, value in defaults.items() if value})
 		changed = True
 
 	if created:
 		doc.insert(ignore_permissions=True)
 	elif changed:
 		doc.save(ignore_permissions=True)
-	return log.note(created or changed, "Item Group", name)
-
-
-def ensure_item(log, item_code, item_group, sells, buys):
-	if frappe.db.exists("Item", item_code):
-		return log.note(False, "Item", item_code)
-	frappe.get_doc({
-		"doctype": "Item",
-		"item_code": item_code,
-		"item_name": item_code,
-		"description": item_code,
-		"item_group": item_group,
-		"stock_uom": UOM,
-		"is_stock_item": 1,
-		"include_item_in_manufacturing": 1,
-		"is_sales_item": int(sells),
-		"is_purchase_item": int(buys),
-	}).insert(ignore_permissions=True)
-	return log.note(True, "Item", item_code)
+	return log.note(created or changed, "Item", item_code)
 
 
 def ensure_price_list(log, name, currency, buying=0, selling=0):
@@ -283,6 +339,7 @@ def ensure_item_price(log, item_code, price_list, rate):
 		"doctype": "Item Price",
 		"item_code": item_code,
 		"price_list": price_list,
+		"uom": UOM,
 		"price_list_rate": rate,
 	}).insert(ignore_permissions=True)
 	return log.note(True, "Item Price", label)

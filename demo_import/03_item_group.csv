@@ -1,8 +1,8 @@
-item_group_name,parent_item_group,is_group,item_group_defaults.company,item_group_defaults.default_warehouse,item_group_defaults.income_account,item_group_defaults.expense_account
-Finished Goods,All Item Groups,1,,,,
-Raw Coffee,All Item Groups,0,Ideal Commodities (U) Ltd,Raw Coffee Store - ICL,,
-Screen 18,Finished Goods,0,Ideal Commodities (U) Ltd,Screen 18 Store - ICL,41010101 - Screen 18 Sales - ICL,51010101 - Screen 18 Cost of Sales - ICL
-Screen 15,Finished Goods,0,Ideal Commodities (U) Ltd,Screen 15 Store - ICL,41010102 - Screen 15 Sales - ICL,51010102 - Screen 15 Cost of Sales - ICL
-Screen 12,Finished Goods,0,Ideal Commodities (U) Ltd,Screen 12 Store - ICL,41010103 - Screen 12 Sales - ICL,51010103 - Screen 12 Cost of Sales - ICL
-Undergrades,Finished Goods,0,Ideal Commodities (U) Ltd,Undergrades Store - ICL,41010104 - Undergrade Sales - ICL,51010104 - Undergrade Cost of Sales - ICL
-By-products,All Item Groups,0,Ideal Commodities (U) Ltd,By-products Store - ICL,41010105 - By-product Sales - ICL,51010105 - By-product Cost of Sales - ICL
+item_group_name,parent_item_group,is_group
+Finished Goods,All Item Groups,1
+Raw Coffee,All Item Groups,0
+Screen 18,Finished Goods,0
+Screen 15,Finished Goods,0
+Screen 12,Finished Goods,0
+Undergrades,Finished Goods,0
+By-products,All Item Groups,0

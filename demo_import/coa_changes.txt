@@ -6,13 +6,13 @@ CHART OF ACCOUNTS - WHAT WAS CHANGED FROM 'COA (1).xlsx'
 - Removed Duties and Taxes: unnumbered ERPNext default group; VAT already has 22040101 Vat Payable
 - Removed VAT: unnumbered ERPNext default account; 22040101 Vat Payable is the VAT account
 - Removed 12040305: a second 'Other Prepayments' under the same parent as 12040307
-- Stock: replaced the 8 pharmacy ledgers under 12010100 with 12010101 Raw Coffee Stock, 12010102 Screen 18 Stock, 12010103 Screen 15 Stock, 12010104 Screen 12 Stock, 12010105 Undergrades Stock, 12010106 By-products Stock.
-- Revenue: replaced the 8 pharmacy ledgers under 41010100 with 41010101 Screen 18 Sales, 41010102 Screen 15 Sales, 41010103 Screen 12 Sales, 41010104 Undergrade Sales, 41010105 By-product Sales.
-- Cost of sales: replaced the 8 pharmacy ledgers under 51010100 with 51010101 Screen 18 Cost of Sales, 51010102 Screen 15 Cost of Sales, 51010103 Screen 12 Cost of Sales, 51010104 Undergrade Cost of Sales, 51010105 By-product Cost of Sales.
+- Stock: replaced the 8 pharmacy ledgers under 12010100 with 12010110 Robusta Stock (12010111 Robusta FAQ Stock, 12010112 Robusta Screen 18 Stock, 12010113 Robusta Screen 15 Stock, 12010114 Robusta Screen 12 Stock, 12010115 Robusta Undergrades Stock), 12010120 Arabica Stock (12010121 Arabica Parchment Stock, 12010122 Arabica Screen 18 Stock, 12010123 Arabica Screen 15 Stock, 12010124 Arabica Screen 12 Stock, 12010125 Arabica Undergrades Stock), 12010130 By-products Stock.
+- Revenue: replaced the 8 pharmacy ledgers under 41010100 with 41010110 Robusta Sales (41010111 Robusta Screen 18 Sales, 41010112 Robusta Screen 15 Sales, 41010113 Robusta Screen 12 Sales, 41010114 Robusta Undergrade Sales), 41010120 Arabica Sales (41010121 Arabica Screen 18 Sales, 41010122 Arabica Screen 15 Sales, 41010123 Arabica Screen 12 Sales, 41010124 Arabica Undergrade Sales), 41010130 By-product Sales.
+- Cost of sales: replaced the 8 pharmacy ledgers under 51010100 with 51010110 Robusta Cost of Sales (51010111 Robusta Screen 18 Cost of Sales, 51010112 Robusta Screen 15 Cost of Sales, 51010113 Robusta Screen 12 Cost of Sales, 51010114 Robusta Undergrade Cost of Sales), 51010120 Arabica Cost of Sales (51010121 Arabica Screen 18 Cost of Sales, 51010122 Arabica Screen 15 Cost of Sales, 51010123 Arabica Screen 12 Cost of Sales, 51010124 Arabica Undergrade Cost of Sales), 51010130 By-product Cost of Sales.
 - Customers: replaced the 4 pharmacy ledgers under 12020100 with 12020101 Export Customers, 12020102 Local Customers.
 - Removed 12030302: Clinic Pesa is a pharmacy payment channel
 - Removed 61010104: Collection of Expired Drugs is pharmacy-specific
 - Renamed 61010105 Commission Med Rep. to Commission - Coffee Agents.
-- Set account types: Fixed Asset (10); Accumulated Depreciation (8); Capital Work in Progress (5); Asset Received But Not Billed (2); Stock (9); Receivable (4); Bank (4); Cash (3); Payable (3); Stock Received But Not Billed (1); Tax (4); Income Account (5); Cost of Goods Sold (5); Stock Adjustment (1); Depreciation (7); Round Off (1); Equity (1); Temporary (1).
+- Set account types: Fixed Asset (10); Accumulated Depreciation (8); Capital Work in Progress (5); Asset Received But Not Billed (2); Stock (16); Receivable (4); Bank (4); Cash (3); Payable (3); Stock Received But Not Billed (1); Tax (4); Income Account (9); Cost of Goods Sold (9); Stock Adjustment (1); Depreciation (7); Round Off (1); Equity (1); Temporary (1).
 
-309 accounts written: 100 groups, 209 ledgers.
+328 accounts written: 106 groups, 222 ledgers.

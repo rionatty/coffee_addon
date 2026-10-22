@@ -12,9 +12,12 @@ STEP 1 - Chart of accounts (Chart of Accounts Importer, not Data Import)
   Search "Chart of Accounts Importer" > choose the company
   > attach 00_chart_of_accounts.xlsx > check the tree it shows > Import.
   This REPLACES the company's chart (and its tax templates) with this one:
-  309 accounts, the client's own numbering, with Screen 18 / 15 / 12 as
-  their own Stock, Sales and Cost of Sales ledgers. What was changed from
-  their file is listed in coa_changes.txt.
+  328 accounts in the client's own numbering. Coffee type is the group and
+  the screens are ledgers under it, in stock, sales and cost of sales:
+     12010110 Robusta Stock > 12010112 Robusta Screen 18 Stock, ...
+     12010120 Arabica Stock > 12010122 Arabica Screen 18 Stock, ...
+     12010130 By-products Stock (dust and husks, from both)
+  What was changed from their file is listed in coa_changes.txt.
 
 STEP 2 - Masters (Data Import), in this order, one at a time:
   Data Import > + Add Data Import > Document Type: (below)
@@ -35,12 +38,15 @@ STEP 2 - Masters (Data Import), in this order, one at a time:
   (There is no 01: the ledgers come from the chart in step 1.)
 
 What it builds
-  Each screen has its own store, posting to its own Stock ledger
-  (e.g. Screen 18 Store -> 12010102 - Screen 18 Stock), its own item group
-  under Finished Goods defaulting 41010101 Screen 18 Sales and
-  51010101 Screen 18 Cost of Sales, and a finished-goods item named for
-  the screen (Robusta Screen 18). Undergrades, by-products and raw coffee
-  the same way, plus the GRN 1731 farmer, an export and a local customer,
+  For Robusta and for Arabica: a raw-coffee line, Screen 18 / 15 / 12 and
+  undergrades. Each line has its own store (under Robusta Stores or
+  Arabica Stores) posting to its own Stock ledger, and its items default
+  that store and their own Sales and Cost of Sales ledgers, e.g.
+     Robusta Screen 18 -> Robusta Screen 18 Store, 41010111 Robusta Screen 18
+     Sales, 51010111 Robusta Screen 18 Cost of Sales.
+  Item groups are by screen (Screen 18 holds Robusta Screen 18 and Arabica
+  Screen 18), so reports can also be read across both coffees.
+  19 items, plus the GRN 1731 farmer, an export and a local customer,
   prices and a USD rate. Prices and the USD rate are demo figures.
 
 Same masters in one command, if you have the server's shell (run it after step 1):
