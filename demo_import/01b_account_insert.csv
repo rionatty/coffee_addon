@@ -1,0 +1,5 @@
+account_name,parent_account,account_number,company,is_group,account_type
+Robusta FAQ Sales,41010110 - Robusta Sales - ICL,41010115,Ideal Commodities (U) Ltd,0,Income Account
+Arabica Parchment Sales,41010120 - Arabica Sales - ICL,41010125,Ideal Commodities (U) Ltd,0,Income Account
+Robusta FAQ Cost of Sales,51010110 - Robusta Cost of Sales - ICL,51010115,Ideal Commodities (U) Ltd,0,Cost of Goods Sold
+Arabica Parchment Cost of Sales,51010120 - Arabica Cost of Sales - ICL,51010125,Ideal Commodities (U) Ltd,0,Cost of Goods Sold

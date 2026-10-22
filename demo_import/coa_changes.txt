@@ -20,3 +20,10 @@ CHART OF ACCOUNTS - WHAT WAS CHANGED FROM 'COA (1).xlsx'
 - Set account types: Fixed Asset (10); Accumulated Depreciation (8); Capital Work in Progress (5); Asset Received But Not Billed (2); Stock (17); Receivable (3); Bank (4); Cash (3); Payable (1); Stock Received But Not Billed (1); Tax (4); Income Account (9); Cost of Goods Sold (9); Stock Adjustment (1); Depreciation (7); Round Off (1); Equity (1); Temporary (1).
 
 329 accounts written: 107 groups, 222 ledgers.
+
+Added by 01b_account_insert.csv (not in the chart file, so the chart stays
+the client's own): ledgers for raw coffee sold without milling -
+  41010115 Robusta FAQ Sales           under 41010110 Robusta Sales
+  41010125 Arabica Parchment Sales     under 41010120 Arabica Sales
+  51010115 Robusta FAQ Cost of Sales   under 51010110 Robusta Cost of Sales
+  51010125 Arabica Parchment Cost of Sales under 51010120 Arabica Cost of Sales

@@ -1,5 +1,6 @@
 file,doctype,import_type,submit
 01_account_update.csv,Account,Update Existing Records,0
+01b_account_insert.csv,Account,Insert New Records,0
 02_warehouse_1.csv,Warehouse,Insert New Records,0
 02_warehouse_2.csv,Warehouse,Insert New Records,0
 02_warehouse_3.csv,Warehouse,Insert New Records,0

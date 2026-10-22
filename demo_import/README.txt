@@ -31,6 +31,7 @@ STEP 2 - Data Import, in this order, one at a time:
 
    File                                  Document Type                 Import Type
    01_account_update.csv                 Account                       Update Existing Records
+   01b_account_insert.csv                Account                       Insert New Records
    02_warehouse_1.csv                    Warehouse                     Insert New Records
    02_warehouse_2.csv                    Warehouse                     Insert New Records
    02_warehouse_3.csv                    Warehouse                     Insert New Records
@@ -74,8 +75,18 @@ What it builds
 
   Item groups: Raw Coffee > Raw Robusta, Raw Arabica; Finished Product >
   Robusta Grades > Robusta Grade 18 / 15 / 12 / Undergrades, Arabica Grades
-  > ..., By-products. Each line's group carries its store and its Sales and
-  Cost of Sales ledgers, so its items post there.
+  > ..., By-products. Each line's group carries its store and its three
+  ledgers - Stock (the store's own), Revenue and Cost of Sales - so its
+  items post there. ERPNext v16 reads Cost of Sales on Delivery Notes and
+  Sales Invoices from the group's Default COGS Account; the Default
+  Expense Account carries the same ledger for v15. The Default Inventory
+  Account is used when item-wise inventory accounts are switched on for
+  the company; otherwise the store's ledger, which is the same one.
+
+  01b adds the four ledgers raw coffee needs and the client's chart does
+  not have: 41010115 Robusta FAQ Sales, 41010125 Arabica Parchment Sales,
+  51010115 Robusta FAQ Cost of Sales, 51010125 Arabica Parchment Cost of
+  Sales - for raw coffee sold as it is, without milling.
 
   Quality control: 14 parameters (moisture, FM, CS, GT, CUT and the screen
   outturns from the GRN; screen retention, defect count, black beans, cup
