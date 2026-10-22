@@ -1,0 +1,17 @@
+item,company,quantity,uom,currency,conversion_rate,rm_cost_as_per,buying_price_list,price_list_currency,plc_conversion_rate,is_active,is_default,cost_allocation_per,default_source_warehouse,default_target_warehouse,items.item_code,items.qty,items.uom,items.rate,secondary_items.secondary_item_type,secondary_items.item_code,secondary_items.qty,secondary_items.uom,secondary_items.conversion_factor,secondary_items.valuation_type,secondary_items.cost_allocation_per,secondary_items.process_loss_per
+Robusta Screen 15,Ideal Commodities (U) Ltd,50.45,Kg,UGX,1,Price List,Standard Buying,UGX,1,1,1,56,Robusta FAQ Store - ICL,Robusta Screen 15 Store - ICL,Robusta FAQ,100,Kg,11800,Additional Finished Good,Robusta Screen 18,13.2,Kg,1,% of Component Cost,16,0
+,,,,,,,,,,,,,,,,,,,Additional Finished Good,Robusta Screen 12,16.85,Kg,1,% of Component Cost,18,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Robusta BHP 1199,7.0,Kg,1,% of Component Cost,5,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Robusta Triage,4.0,Kg,1,% of Component Cost,2,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Robusta Blacks,2.0,Kg,1,% of Component Cost,1,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Robusta Browns,1.5,Kg,1,% of Component Cost,1,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Robusta Pods,1.0,Kg,1,% of Component Cost,1,0
+,,,,,,,,,,,,,,,,,,,By-Product,Coffee Dust,1.5,Kg,1,% of Component Cost,0,0
+Arabica Screen 15,Ideal Commodities (U) Ltd,31.0,Kg,UGX,1,Price List,Standard Buying,UGX,1,1,1,42,Arabica Parchment Store - ICL,Arabica Screen 15 Store - ICL,Arabica Parchment,100,Kg,14500,Additional Finished Good,Arabica Screen 18,23.0,Kg,1,% of Component Cost,34,0
+,,,,,,,,,,,,,,,,,,,Additional Finished Good,Arabica Screen 12,14.0,Kg,1,% of Component Cost,18,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Arabica Triage,5.0,Kg,1,% of Component Cost,3,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Arabica Blacks,2.0,Kg,1,% of Component Cost,1,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Arabica Browns,2.0,Kg,1,% of Component Cost,1,0
+,,,,,,,,,,,,,,,,,,,Co-Product,Arabica Pods,1.0,Kg,1,% of Component Cost,1,0
+,,,,,,,,,,,,,,,,,,,By-Product,Coffee Husks,19.0,Kg,1,% of Component Cost,0,0
+,,,,,,,,,,,,,,,,,,,By-Product,Coffee Dust,1.0,Kg,1,% of Component Cost,0,0

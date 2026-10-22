@@ -62,7 +62,8 @@ def run(company=COMPANY, chart=True):
 	with open(os.path.join(folder(), ORDER), encoding="utf-8") as f:
 		for step in csv.DictReader(f):
 			import_type = "update" if step["import_type"] == "Update Existing Records" else "insert"
-			import_master(step["doctype"], os.path.join(folder(), step["file"]), import_type)
+			submit = (step.get("submit") or "").strip() == "1"
+			import_master(step["doctype"], os.path.join(folder(), step["file"]), import_type, submit)
 			done.append(step["file"])
 
 	frappe.db.commit()
@@ -91,8 +92,8 @@ def import_chart(company):
 	print(f"Chart of accounts imported from {CHART}.")
 
 
-def import_master(doctype, path, import_type):
+def import_master(doctype, path, import_type, submit=False):
 	from frappe.core.doctype.data_import.data_import import import_file
 
-	print(f"Importing {os.path.basename(path)} ({doctype}, {import_type}) ...")
-	import_file(doctype, path, import_type, console=True)
+	print(f"Importing {os.path.basename(path)} ({doctype}, {import_type}{', submitted' if submit else ''}) ...")
+	import_file(doctype, path, import_type, submit_after_import=submit, console=True)

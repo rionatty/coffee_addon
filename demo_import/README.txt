@@ -47,6 +47,9 @@ STEP 2 - Data Import, in this order, one at a time:
    11_customer_group.csv                 Customer Group                Insert New Records
    12_customer.csv                       Customer                      Insert New Records
    13_currency_exchange.csv              Currency Exchange             Insert New Records
+   14_bom.csv                            BOM                           Insert New Records
+                                         (tick "Submit After Import" before Start Import:
+                                          only a submitted BOM can be used for production)
 
   If the preview shows ANY "do not exist" or "missing" message, stop:
     Data Import checks every row before it inserts anything, and a single
@@ -85,6 +88,22 @@ What it builds
   Customers: Export Buyers > 12020101 Export Customers (USD), Export (USD)
   price list, customers billed in USD. Local Buyers > 12020102 Local
   Customers (UGX), Standard Selling, billed in UGX.
+
+  Milling BOMs (14_bom.csv), per 100 kg of raw coffee in:
+    Robusta FAQ        -> Screen 15 50.45 kg (the BOM's item), Screen 18 13.2,
+                          Screen 12 16.85 (the screens as on the Goods
+                          Received Note), BHP 1199 7, Triage 4, Blacks 2,
+                          Browns 1.5, Pods 1, Coffee Dust 1.5; 2.5 kg lost.
+    Arabica Parchment  -> Screen 15 31 kg, Screen 18 23, Screen 12 14,
+                          Triage 5, Blacks 2, Browns 2, Pods 1, Coffee Husks
+                          19 (the parchment), Coffee Dust 1; 2 kg lost.
+    The other screens are Additional Finished Goods, the undergrades
+    Co-Products, dust and husks By-Products. The raw coffee's cost is shared
+    by sales value at the demo prices, in whole percentages (Robusta: Screen
+    15 56%, 18 16%, 12 18%, BHP 5%, Triage 2%, Blacks/Browns/Pods 1% each);
+    by-products carry no cost, so their sale is all margin. A Work Order
+    for the main grade consumes the raw coffee in that ratio: 50.45 kg of
+    Robusta Screen 15 per 100 kg of FAQ. Yields and shares are demo figures.
 
   19 items, a demo farmer, prices and a USD rate (demo figures).
 
