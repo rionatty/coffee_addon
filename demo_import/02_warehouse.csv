@@ -1,7 +1,7 @@
 warehouse_name,parent_warehouse,company,is_group,account
-Raw Coffee Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,Raw Coffee Stock - ICL
-Screen 18 Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,Screen 18 Stock - ICL
-Screen 15 Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,Screen 15 Stock - ICL
-Screen 12 Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,Screen 12 Stock - ICL
-Undergrades Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,Undergrades Stock - ICL
-By-products Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,By-products Stock - ICL
+Raw Coffee Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,12010101 - Raw Coffee Stock - ICL
+Screen 18 Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,12010102 - Screen 18 Stock - ICL
+Screen 15 Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,12010103 - Screen 15 Stock - ICL
+Screen 12 Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,12010104 - Screen 12 Stock - ICL
+Undergrades Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,12010105 - Undergrades Stock - ICL
+By-products Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,12010106 - By-products Stock - ICL

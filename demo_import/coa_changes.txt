@@ -1,0 +1,18 @@
+CHART OF ACCOUNTS - WHAT WAS CHANGED FROM 'COA (1).xlsx'
+
+- Read 641 rows; 324 distinct accounts after removing the repeated sections.
+- Moved 11020400 Capital Wip Computers & Data Processing Equip from Tangible Assets to Capital Wip (11020000), where its number puts it.
+- Gave 'Computers and Printers' (it had no number) the number 11020402, under 11020400.
+- Removed Duties and Taxes: unnumbered ERPNext default group; VAT already has 22040101 Vat Payable
+- Removed VAT: unnumbered ERPNext default account; 22040101 Vat Payable is the VAT account
+- Removed 12040305: a second 'Other Prepayments' under the same parent as 12040307
+- Stock: replaced the 8 pharmacy ledgers under 12010100 with 12010101 Raw Coffee Stock, 12010102 Screen 18 Stock, 12010103 Screen 15 Stock, 12010104 Screen 12 Stock, 12010105 Undergrades Stock, 12010106 By-products Stock.
+- Revenue: replaced the 8 pharmacy ledgers under 41010100 with 41010101 Screen 18 Sales, 41010102 Screen 15 Sales, 41010103 Screen 12 Sales, 41010104 Undergrade Sales, 41010105 By-product Sales.
+- Cost of sales: replaced the 8 pharmacy ledgers under 51010100 with 51010101 Screen 18 Cost of Sales, 51010102 Screen 15 Cost of Sales, 51010103 Screen 12 Cost of Sales, 51010104 Undergrade Cost of Sales, 51010105 By-product Cost of Sales.
+- Customers: replaced the 4 pharmacy ledgers under 12020100 with 12020101 Export Customers, 12020102 Local Customers.
+- Removed 12030302: Clinic Pesa is a pharmacy payment channel
+- Removed 61010104: Collection of Expired Drugs is pharmacy-specific
+- Renamed 61010105 Commission Med Rep. to Commission - Coffee Agents.
+- Set account types: Fixed Asset (10); Accumulated Depreciation (8); Capital Work in Progress (5); Asset Received But Not Billed (2); Stock (9); Receivable (4); Bank (4); Cash (3); Payable (3); Stock Received But Not Billed (1); Tax (4); Income Account (5); Cost of Goods Sold (5); Stock Adjustment (1); Depreciation (7); Round Off (1); Equity (1); Temporary (1).
+
+309 accounts written: 100 groups, 209 ledgers.
