@@ -1,10 +1,10 @@
 item_group_name,parent_item_group,is_group,item_group_defaults.company,item_group_defaults.default_warehouse,item_group_defaults.income_account,item_group_defaults.expense_account
-Raw Material,All Item Groups,1,,,,
+Raw Coffee,All Item Groups,1,,,,
 Finished Product,All Item Groups,1,,,,
 Robusta Grades,Finished Product,1,,,,
 Arabica Grades,Finished Product,1,,,,
-Raw Robusta,Raw Material,0,Ideal Commodities (U) Ltd,Robusta FAQ Store - ICL,,
-Raw Arabica,Raw Material,0,Ideal Commodities (U) Ltd,Arabica Parchment Store - ICL,,
+Raw Robusta,Raw Coffee,0,Ideal Commodities (U) Ltd,Robusta FAQ Store - ICL,,
+Raw Arabica,Raw Coffee,0,Ideal Commodities (U) Ltd,Arabica Parchment Store - ICL,,
 Robusta Grade 18,Robusta Grades,0,Ideal Commodities (U) Ltd,Robusta Screen 18 Store - ICL,41010111 - Robusta Screen 18 Sales - ICL,51010111 - Robusta Screen 18 Cost of Sales - ICL
 Robusta Grade 15,Robusta Grades,0,Ideal Commodities (U) Ltd,Robusta Screen 15 Store - ICL,41010112 - Robusta Screen 15 Sales - ICL,51010112 - Robusta Screen 15 Cost of Sales - ICL
 Robusta Grade 12,Robusta Grades,0,Ideal Commodities (U) Ltd,Robusta Screen 12 Store - ICL,41010113 - Robusta Screen 12 Sales - ICL,51010113 - Robusta Screen 12 Cost of Sales - ICL

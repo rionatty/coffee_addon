@@ -44,6 +44,20 @@ STEP 2 - Data Import, in this order, one at a time:
    12_customer.csv                       Customer                      Insert New Records
    13_currency_exchange.csv              Currency Exchange             Insert New Records
 
+  Warnings in the import preview
+    "The following values do not exist" is a warning, not an error: the
+    Start Import button still works. Two of them are expected:
+      02 - Warehouse:  Raw Material Stores - ICL, Finished Product Stores - ICL,
+           Robusta Stores - ICL, Arabica Stores - ICL (the file creates these
+           parents first);
+      03 - Item Group: Raw Coffee, Finished Product, Robusta Grades, Arabica
+           Grades (the same: parents first).
+    Start those imports anyway. Any OTHER "do not exist" warning means an
+    earlier step is missing, and the rows that need it will fail:
+      a store (... Store - ICL) in 03      -> import 02 first;
+      a ledger (NUMBER - Name - ICL)       -> the chart (STEP 1) is not in,
+                                              or the abbreviation is not ICL.
+
   01 must come right after the chart: it gives the USD export receivable and
   the GBP / USD creditors their account type, which the chart import has to
   leave off (ERPNext would make one of them the company default and refuse
@@ -54,7 +68,7 @@ What it builds
   Product Stores > Robusta Stores / Arabica Stores (Screen 18, 15, 12,
   Undergrades) and By-products Store. Each store posts to its own ledger.
 
-  Item groups: Raw Material > Raw Robusta, Raw Arabica; Finished Product >
+  Item groups: Raw Coffee > Raw Robusta, Raw Arabica; Finished Product >
   Robusta Grades > Robusta Grade 18 / 15 / 12 / Undergrades, Arabica Grades
   > ..., By-products. Each line's group carries its store and its Sales and
   Cost of Sales ledgers, so its items post there.
@@ -71,7 +85,7 @@ What it builds
   price list, customers billed in USD. Local Buyers > 12020102 Local
   Customers (UGX), Standard Selling, billed in UGX.
 
-  19 items, the GRN 1731 farmer, prices and a USD rate (demo figures).
+  19 items, a demo farmer, prices and a USD rate (demo figures).
 
 All of it in one command instead, if you have the server's shell:
   bench --site SITE execute coffee_addon.coffee_addon.demo_setup.run
