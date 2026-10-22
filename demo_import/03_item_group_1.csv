@@ -1,3 +1,2 @@
 item_group_name,parent_item_group,is_group,item_group_defaults.company,item_group_defaults.default_warehouse,item_group_defaults.default_inventory_account,item_group_defaults.income_account,item_group_defaults.default_cogs_account,item_group_defaults.expense_account
-Raw Coffee,All Item Groups,1,,,,,,
 Finished Product,All Item Groups,1,,,,,,

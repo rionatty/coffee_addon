@@ -46,7 +46,7 @@ def folder():
 	return os.path.normpath(os.path.join(frappe.get_app_path("coffee_addon"), "..", "demo_import"))
 
 
-def run(company=COMPANY, chart=True):
+def check_company(company):
 	if company != COMPANY or not frappe.db.exists("Company", company):
 		frappe.throw(_("The demo files are made for the company {0}.").format(frappe.bold(COMPANY)), title=_("Coffee demo"))
 	if frappe.get_cached_value("Company", company, "abbr") != ABBR:
@@ -54,6 +54,10 @@ def run(company=COMPANY, chart=True):
 			_("The demo files name every ledger '... - {0}': set {1}'s abbreviation to {0} first.").format(ABBR, company),
 			title=_("Coffee demo"),
 		)
+
+
+def run(company=COMPANY, chart=True):
+	check_company(company)
 
 	if chart:
 		import_chart(company)
@@ -97,3 +101,146 @@ def import_master(doctype, path, import_type, submit=False):
 
 	print(f"Importing {os.path.basename(path)} ({doctype}, {import_type}{', submitted' if submit else ''}) ...")
 	import_file(doctype, path, import_type, submit_after_import=submit, console=True)
+
+
+# ─── Item groups, put right whatever an earlier import left ──────────────────
+RAW_MATERIAL = "Raw Material"  # ERPNext's own group (a leaf from the setup wizard), made a group
+RETIRED_GROUPS = ("Raw Coffee",)  # an earlier name for Raw Material in these files
+GROUP_DEFAULTS = (
+	"default_warehouse",
+	"default_inventory_account",
+	"income_account",
+	"default_cogs_account",
+	"expense_account",
+)
+
+
+def item_groups(company=COMPANY):
+	"""Put the coffee item groups right, whatever earlier imports left on the site:
+
+		bench --site SITE execute coffee_addon.coffee_addon.demo_setup.item_groups
+
+	The tree it leaves is the one the demo files describe -
+		Raw Material > Raw Robusta, Raw Arabica
+		Finished Product > Robusta Grades > Robusta Grade 18 / 15 / 12 / Undergrades,
+		                   Arabica Grades > Arabica Grade 18 / 15 / 12 / Undergrades,
+		                   By-products
+	- read from the same 03_item_group files Data Import uses. Groups that are
+	missing are made, groups under the wrong parent are moved with everything
+	under them, ERPNext's own "Raw Material" is made a group, and every group
+	that holds stock gets its store and its Stock, Revenue and Cost of Sales
+	ledgers for the company. The raw coffee ledgers (01b) are added first when
+	the site lacks them. Other groups on the site are left as they are. Running
+	it again changes nothing.
+	"""
+	check_company(company)
+	add_missing_ledgers(company)
+
+	rows = item_group_rows()
+	stores = sorted({r["default_warehouse"] for r in rows if r.get("default_warehouse")})
+	missing = [s for s in stores if not frappe.db.exists("Warehouse", s)]
+	if missing:
+		frappe.throw(
+			_("Import the 02_warehouse files first. These stores are not on the site: {0}").format(", ".join(missing)),
+			title=_("Coffee demo"),
+		)
+
+	report = []
+	for row in rows:
+		report.extend(put_item_group(row, company))
+	report.extend(retire_groups())
+
+	frappe.db.commit()
+	for line in report or ["Item groups already right; nothing changed."]:
+		print(line)
+	return report
+
+
+def item_group_rows():
+	"""The tree, parents first: Raw Material, then the 03_item_group files in import order."""
+	rows = [{"item_group_name": RAW_MATERIAL, "parent_item_group": "All Item Groups", "is_group": "1"}]
+	with open(os.path.join(folder(), ORDER), encoding="utf-8") as f:
+		files = [s["file"] for s in csv.DictReader(f) if s["doctype"] == "Item Group" and s["import_type"] == "Insert New Records"]
+	for name in files:
+		with open(os.path.join(folder(), name), encoding="utf-8") as f:
+			for r in csv.DictReader(f):
+				rows.append({
+					"item_group_name": r["item_group_name"].strip(),
+					"parent_item_group": r["parent_item_group"].strip(),
+					"is_group": r["is_group"].strip(),
+					**{k: (r.get("item_group_defaults." + k) or "").strip() for k in GROUP_DEFAULTS},
+				})
+	return rows
+
+
+def put_item_group(row, company):
+	name, parent, is_group = row["item_group_name"], row["parent_item_group"], frappe.utils.cint(row["is_group"])
+	new = not frappe.db.exists("Item Group", name)
+	doc = frappe.new_doc("Item Group") if new else frappe.get_doc("Item Group", name)
+	if new:
+		doc.item_group_name = name
+	changes = []
+
+	if doc.parent_item_group != parent:
+		if not new:
+			changes.append(f"moved from {doc.parent_item_group or '(top)'} to {parent}")
+		doc.parent_item_group = parent
+	if frappe.utils.cint(doc.is_group) != is_group:
+		if not new:
+			changes.append("made a group" if is_group else "made a leaf")
+		doc.is_group = is_group
+
+	if not is_group:
+		meta = frappe.get_meta("Item Default")
+		wanted = {k: row.get(k) for k in GROUP_DEFAULTS if row.get(k) and meta.has_field(k)}
+		line = next((d for d in doc.get("item_group_defaults") or [] if d.company == company), None)
+		if wanted and line is None:
+			line = doc.append("item_group_defaults", {"company": company})
+		for field, value in wanted.items():
+			if line.get(field) != value:
+				line.set(field, value)
+				if not new:
+					changes.append(f"{meta.get_label(field)} {value}")
+
+	if not new and not changes:
+		return []
+	doc.flags.ignore_permissions = True
+	doc.save()
+	return [f"Item Group {name}: made under {parent}"] if new else [f"Item Group {name}: " + "; ".join(changes)]
+
+
+def retire_groups():
+	report = []
+	for name in RETIRED_GROUPS:
+		if not frappe.db.exists("Item Group", name):
+			continue
+		if frappe.db.exists("Item Group", {"parent_item_group": name}) or frappe.db.exists("Item", {"item_group": name}):
+			report.append(f"Item Group {name}: left, it still has groups or items under it")
+			continue
+		frappe.delete_doc("Item Group", name, ignore_permissions=True)
+		report.append(f"Item Group {name}: removed, its groups now sit under {RAW_MATERIAL}")
+	return report
+
+
+def add_missing_ledgers(company):
+	"""The ledgers 01b_account_insert.csv adds, when the site does not have them yet."""
+	with open(os.path.join(folder(), "01b_account_insert.csv"), encoding="utf-8") as f:
+		for r in csv.DictReader(f):
+			name = f"{r['account_number']} - {r['account_name']} - {ABBR}"
+			if frappe.db.exists("Account", name):
+				continue
+			if not frappe.db.exists("Account", r["parent_account"]):
+				frappe.throw(
+					_("Import the client's chart of accounts first: {0} is not on the site.").format(r["parent_account"]),
+					title=_("Coffee demo"),
+				)
+			frappe.get_doc({
+				"doctype": "Account",
+				"account_name": r["account_name"],
+				"account_number": r["account_number"],
+				"parent_account": r["parent_account"],
+				"company": company,
+				"is_group": 0,
+				"account_type": r["account_type"],
+			}).insert(ignore_permissions=True)
+			print(f"Account {name}: added")

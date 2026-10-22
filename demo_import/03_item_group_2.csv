@@ -1,6 +1,6 @@
 item_group_name,parent_item_group,is_group,item_group_defaults.company,item_group_defaults.default_warehouse,item_group_defaults.default_inventory_account,item_group_defaults.income_account,item_group_defaults.default_cogs_account,item_group_defaults.expense_account
 Robusta Grades,Finished Product,1,,,,,,
 Arabica Grades,Finished Product,1,,,,,,
-Raw Robusta,Raw Coffee,0,Ideal Commodities (U) Ltd,Robusta FAQ Store - ICL,12010101 - Robusta FAQ Stock - ICL,41010115 - Robusta FAQ Sales - ICL,51010115 - Robusta FAQ Cost of Sales - ICL,51010115 - Robusta FAQ Cost of Sales - ICL
-Raw Arabica,Raw Coffee,0,Ideal Commodities (U) Ltd,Arabica Parchment Store - ICL,12010102 - Arabica Parchment Stock - ICL,41010125 - Arabica Parchment Sales - ICL,51010125 - Arabica Parchment Cost of Sales - ICL,51010125 - Arabica Parchment Cost of Sales - ICL
+Raw Robusta,Raw Material,0,Ideal Commodities (U) Ltd,Robusta FAQ Store - ICL,12010101 - Robusta FAQ Stock - ICL,41010115 - Robusta FAQ Sales - ICL,51010115 - Robusta FAQ Cost of Sales - ICL,51010115 - Robusta FAQ Cost of Sales - ICL
+Raw Arabica,Raw Material,0,Ideal Commodities (U) Ltd,Arabica Parchment Store - ICL,12010102 - Arabica Parchment Stock - ICL,41010125 - Arabica Parchment Sales - ICL,51010125 - Arabica Parchment Cost of Sales - ICL,51010125 - Arabica Parchment Cost of Sales - ICL
 By-products,Finished Product,0,Ideal Commodities (U) Ltd,By-products Store - ICL,12010330 - By-products Stock - ICL,41010130 - By-product Sales - ICL,51010130 - By-product Cost of Sales - ICL,51010130 - By-product Cost of Sales - ICL

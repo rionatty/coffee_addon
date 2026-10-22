@@ -35,6 +35,7 @@ STEP 2 - Data Import, in this order, one at a time:
    02_warehouse_1.csv                    Warehouse                     Insert New Records
    02_warehouse_2.csv                    Warehouse                     Insert New Records
    02_warehouse_3.csv                    Warehouse                     Insert New Records
+   03_item_group_0.csv                   Item Group                    Update Existing Records
    03_item_group_1.csv                   Item Group                    Insert New Records
    03_item_group_2.csv                   Item Group                    Insert New Records
    03_item_group_3.csv                   Item Group                    Insert New Records
@@ -63,6 +64,13 @@ STEP 2 - Data Import, in this order, one at a time:
       a ledger (NUMBER - Name - ICL)         -> the chart (STEP 1), or the
                                                 abbreviation is not ICL.
 
+  Item groups already imported from an earlier version of these files?
+    Do not import 03 again. One command puts the tree right - missing groups
+    made, misplaced ones moved, every group given its store and ledgers:
+      bench --site SITE execute coffee_addon.coffee_addon.demo_setup.item_groups
+    (03_item_group_0 makes ERPNext's own "Raw Material" group a parent, so
+    the raw coffee groups can sit under it.)
+
   01 must come right after the chart: it gives the USD export receivable and
   the GBP / USD creditors their account type, which the chart import has to
   leave off (ERPNext would make one of them the company default and refuse
@@ -73,7 +81,7 @@ What it builds
   Product Stores > Robusta Stores / Arabica Stores (Screen 18, 15, 12,
   Undergrades) and By-products Store. Each store posts to its own ledger.
 
-  Item groups: Raw Coffee > Raw Robusta, Raw Arabica; Finished Product >
+  Item groups: Raw Material > Raw Robusta, Raw Arabica; Finished Product >
   Robusta Grades > Robusta Grade 18 / 15 / 12 / Undergrades, Arabica Grades
   > ..., By-products. Each line's group carries its store and its three
   ledgers - Stock (the store's own), Revenue and Cost of Sales - so its

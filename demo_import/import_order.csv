@@ -4,6 +4,7 @@ file,doctype,import_type,submit
 02_warehouse_1.csv,Warehouse,Insert New Records,0
 02_warehouse_2.csv,Warehouse,Insert New Records,0
 02_warehouse_3.csv,Warehouse,Insert New Records,0
+03_item_group_0.csv,Item Group,Update Existing Records,0
 03_item_group_1.csv,Item Group,Insert New Records,0
 03_item_group_2.csv,Item Group,Insert New Records,0
 03_item_group_3.csv,Item Group,Insert New Records,0
