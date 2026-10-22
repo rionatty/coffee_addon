@@ -1,0 +1,6 @@
+warehouse_name,parent_warehouse,company,is_group,account
+Robusta Stores,Finished Product Stores - ICL,Ideal Commodities (U) Ltd,1,
+Arabica Stores,Finished Product Stores - ICL,Ideal Commodities (U) Ltd,1,
+Robusta FAQ Store,Raw Material Stores - ICL,Ideal Commodities (U) Ltd,0,12010101 - Robusta FAQ Stock - ICL
+Arabica Parchment Store,Raw Material Stores - ICL,Ideal Commodities (U) Ltd,0,12010102 - Arabica Parchment Stock - ICL
+By-products Store,Finished Product Stores - ICL,Ideal Commodities (U) Ltd,0,12010330 - By-products Stock - ICL

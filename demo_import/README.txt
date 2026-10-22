@@ -31,8 +31,12 @@ STEP 2 - Data Import, in this order, one at a time:
 
    File                                  Document Type                 Import Type
    01_account_update.csv                 Account                       Update Existing Records
-   02_warehouse.csv                      Warehouse                     Insert New Records
-   03_item_group.csv                     Item Group                    Insert New Records
+   02_warehouse_1.csv                    Warehouse                     Insert New Records
+   02_warehouse_2.csv                    Warehouse                     Insert New Records
+   02_warehouse_3.csv                    Warehouse                     Insert New Records
+   03_item_group_1.csv                   Item Group                    Insert New Records
+   03_item_group_2.csv                   Item Group                    Insert New Records
+   03_item_group_3.csv                   Item Group                    Insert New Records
    04_quality_inspection_parameter.csv   Quality Inspection Parameter  Insert New Records
    05_quality_inspection_template.csv    Quality Inspection Template   Insert New Records
    06_item.csv                           Item                          Insert New Records
@@ -44,19 +48,16 @@ STEP 2 - Data Import, in this order, one at a time:
    12_customer.csv                       Customer                      Insert New Records
    13_currency_exchange.csv              Currency Exchange             Insert New Records
 
-  Warnings in the import preview
-    "The following values do not exist" is a warning, not an error: the
-    Start Import button still works. Two of them are expected:
-      02 - Warehouse:  Raw Material Stores - ICL, Finished Product Stores - ICL,
-           Robusta Stores - ICL, Arabica Stores - ICL (the file creates these
-           parents first);
-      03 - Item Group: Raw Coffee, Finished Product, Robusta Grades, Arabica
-           Grades (the same: parents first).
-    Start those imports anyway. Any OTHER "do not exist" warning means an
-    earlier step is missing, and the rows that need it will fail:
-      a store (... Store - ICL) in 03      -> import 02 first;
-      a ledger (NUMBER - Name - ICL)       -> the chart (STEP 1) is not in,
-                                              or the abbreviation is not ICL.
+  If the preview shows ANY "do not exist" or "missing" message, stop:
+    Data Import checks every row before it inserts anything, and a single
+    missing value makes it import nothing at all. Each file here only
+    refers to records made by the files before it - that is why the stores
+    and the item groups come in three files each, one level of the tree at
+    a time. So a missing value always means an earlier step is not in:
+      a store or group from the same family  -> the file before it (_1, _2);
+      a store (... Store - ICL) in 03        -> the 02 files;
+      a ledger (NUMBER - Name - ICL)         -> the chart (STEP 1), or the
+                                                abbreviation is not ICL.
 
   01 must come right after the chart: it gives the USD export receivable and
   the GBP / USD creditors their account type, which the chart import has to
