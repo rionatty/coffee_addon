@@ -1,0 +1,15 @@
+parameter,description
+Moisture Content (%),"Moisture by meter, % of sample weight."
+Foreign Matter - FM (%),"Stones, sticks and other foreign matter."
+CS (%),"CS defects, as recorded on the Goods Received Note."
+GT (%),"GT defects, as recorded on the Goods Received Note."
+CUT (%),Total cut agreed on the sample.
+Outturn SC 18 (%),Share of the sample retained on screen 18.
+Outturn SC 15 (%),Share of the sample retained on screen 15.
+Outturn SC 12 (%),Share of the sample retained on screen 12.
+Outturn 1199 (%),Share of the sample graded BHP 1199.
+Total Outturn (%),Clean coffee out of the sample.
+Screen Retention (%),Share retained on the grade's screen.
+Defect Count (per 300 g),Defects counted in a 300 g sample.
+Black Beans (%),"Black beans, % of sample weight."
+Cup Quality,Cup test result.

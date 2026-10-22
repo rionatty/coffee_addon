@@ -1,0 +1,14 @@
+file,doctype,import_type
+01_account_update.csv,Account,Update Existing Records
+02_warehouse.csv,Warehouse,Insert New Records
+03_item_group.csv,Item Group,Insert New Records
+04_quality_inspection_parameter.csv,Quality Inspection Parameter,Insert New Records
+05_quality_inspection_template.csv,Quality Inspection Template,Insert New Records
+06_item.csv,Item,Insert New Records
+07_price_list.csv,Price List,Insert New Records
+08_item_price.csv,Item Price,Insert New Records
+09_supplier_group.csv,Supplier Group,Insert New Records
+10_supplier.csv,Supplier,Insert New Records
+11_customer_group.csv,Customer Group,Insert New Records
+12_customer.csv,Customer,Insert New Records
+13_currency_exchange.csv,Currency Exchange,Insert New Records

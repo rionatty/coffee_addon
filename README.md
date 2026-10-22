@@ -23,22 +23,28 @@ takes the net weight as its quantity and the price paid as its rate, so
 the coffee reaches the store and the supplier is owed the same figures the
 note shows.
 
-### Demo masters
+### Demo books
 
-One command builds the books for a coffee demo, and is safe to run again:
+`demo_import/` holds the client's chart of accounts (for the Chart of
+Accounts Importer) and the master data as Data Import files, with a
+README giving the order. Raw material and finished product are apart in
+the chart, the stores and the item groups; finished product is split by
+coffee type (Robusta, Arabica) and then by screen, each screen with its own
+Stock, Sales and Cost of Sales ledgers. Quality inspection parameters and
+templates map every item, and export grades need an inspection before
+delivery. Export customers are billed in USD to a USD receivable.
+
+The same files, through ERPNext's own importers, in one command:
 
 ```bash
-bench --site your-site execute coffee_addon.coffee_addon.demo_setup.run --kwargs "{'company': 'Your Company'}"
+bench --site your-site execute coffee_addon.coffee_addon.demo_setup.run
 ```
 
-Coffee type is the group and the screens are the ledgers under it, in
-stock, sales and cost of sales: Robusta Stock > Robusta Screen 18 Stock,
-Arabica Stock > Arabica Screen 18 Stock, and so on, with dust and husks on
-shared By-products ledgers. Each line has its own store posting to its Stock
-ledger, and its items default that store and their own Sales and Cost of
-Sales ledgers. Item groups are by screen, across both coffees. The same
-masters ship as Data Import files, with the client's chart of accounts, in
-`demo_import/`. See `coffee_addon/coffee_addon/demo_setup.py`.
+### Certificate of Analysis
+
+A print format for Quality Inspection: the specification of each parameter,
+the result (the mean of the readings), whether it passed, and the
+inspection's conclusion, for the buyer of each lot.
 
 ### Install
 

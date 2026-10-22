@@ -1,0 +1,20 @@
+item_code,item_name,item_group,stock_uom,is_stock_item,include_item_in_manufacturing,is_sales_item,is_purchase_item,description,quality_inspection_template,inspection_required_before_purchase,inspection_required_before_delivery
+Robusta FAQ,Robusta FAQ,Raw Robusta,Kg,1,1,0,1,Robusta FAQ,Robusta FAQ Intake,0,0
+Arabica Parchment,Arabica Parchment,Raw Arabica,Kg,1,1,0,1,Arabica Parchment,Arabica Parchment Intake,0,0
+Robusta Screen 18,Robusta Screen 18,Robusta Grade 18,Kg,1,1,1,0,Robusta Screen 18,Screen 18 Export,0,1
+Robusta Screen 15,Robusta Screen 15,Robusta Grade 15,Kg,1,1,1,0,Robusta Screen 15,Screen 15 Export,0,1
+Robusta Screen 12,Robusta Screen 12,Robusta Grade 12,Kg,1,1,1,0,Robusta Screen 12,Screen 12 Export,0,1
+Robusta BHP 1199,Robusta BHP 1199,Robusta Undergrades,Kg,1,1,1,0,Robusta BHP 1199,Undergrade Grading,0,0
+Robusta Triage,Robusta Triage,Robusta Undergrades,Kg,1,1,1,0,Robusta Triage,Undergrade Grading,0,0
+Robusta Blacks,Robusta Blacks,Robusta Undergrades,Kg,1,1,1,0,Robusta Blacks,Undergrade Grading,0,0
+Robusta Browns,Robusta Browns,Robusta Undergrades,Kg,1,1,1,0,Robusta Browns,Undergrade Grading,0,0
+Robusta Pods,Robusta Pods,Robusta Undergrades,Kg,1,1,1,0,Robusta Pods,Undergrade Grading,0,0
+Arabica Screen 18,Arabica Screen 18,Arabica Grade 18,Kg,1,1,1,0,Arabica Screen 18,Screen 18 Export,0,1
+Arabica Screen 15,Arabica Screen 15,Arabica Grade 15,Kg,1,1,1,0,Arabica Screen 15,Screen 15 Export,0,1
+Arabica Screen 12,Arabica Screen 12,Arabica Grade 12,Kg,1,1,1,0,Arabica Screen 12,Screen 12 Export,0,1
+Arabica Triage,Arabica Triage,Arabica Undergrades,Kg,1,1,1,0,Arabica Triage,Undergrade Grading,0,0
+Arabica Blacks,Arabica Blacks,Arabica Undergrades,Kg,1,1,1,0,Arabica Blacks,Undergrade Grading,0,0
+Arabica Browns,Arabica Browns,Arabica Undergrades,Kg,1,1,1,0,Arabica Browns,Undergrade Grading,0,0
+Arabica Pods,Arabica Pods,Arabica Undergrades,Kg,1,1,1,0,Arabica Pods,Undergrade Grading,0,0
+Coffee Dust,Coffee Dust,By-products,Kg,1,1,1,0,Coffee Dust,,0,0
+Coffee Husks,Coffee Husks,By-products,Kg,1,1,1,0,Coffee Husks,,0,0

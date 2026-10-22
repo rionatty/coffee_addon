@@ -1,0 +1,88 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header -%}
+{#- Certificate of Analysis: a Quality Inspection printed for the buyer.
+    Each parameter shows its specification (the template's range, or the
+    expected value), the result (the mean of the readings taken) and whether
+    it passed; the inspection's own status is the conclusion. -#}
+<style>
+	.coa-title { text-align: center; font-size: 18px; font-weight: 700; letter-spacing: 2px; margin: 6px 0 14px; }
+	.coa-meta { width: 100%; margin-bottom: 10px; }
+	.coa-meta td { padding: 3px 10px 3px 0; vertical-align: top; }
+	.coa-meta td.coa-label { color: #555; white-space: nowrap; width: 18%; }
+	.coa-results th { background: #f3f4f6; }
+	.coa-results td, .coa-results th { padding: 6px 8px !important; }
+	.coa-Accepted { color: #1a7f37; font-weight: 600; }
+	.coa-Rejected { color: #b42318; font-weight: 600; }
+	.coa-conclusion { margin-top: 12px; font-size: 13px; }
+	.coa-sign { width: 100%; margin-top: 56px; }
+	.coa-sign td { width: 50%; padding-top: 6px; border-top: 1px solid #333; }
+</style>
+
+{{ add_header(0, 1, doc, letter_head, no_letterhead, print_settings) }}
+
+<div class="coa-title">{{ _("CERTIFICATE OF ANALYSIS") }}</div>
+
+<table class="coa-meta">
+	<tr>
+		<td class="coa-label">{{ _("Certificate No.") }}</td><td><b>{{ doc.name }}</b></td>
+		<td class="coa-label">{{ _("Date") }}</td><td>{{ frappe.utils.format_date(doc.report_date) }}</td>
+	</tr>
+	<tr>
+		<td class="coa-label">{{ _("Product") }}</td><td>{{ doc.item_name or doc.item_code }}</td>
+		<td class="coa-label">{{ _("Lot / Batch") }}</td><td>{{ doc.batch_no or "-" }}</td>
+	</tr>
+	<tr>
+		<td class="coa-label">{{ _("Reference") }}</td><td>{{ doc.reference_type or "" }} {{ doc.reference_name or "" }}</td>
+		<td class="coa-label">{{ _("Sample Size") }}</td><td>{{ doc.get_formatted("sample_size") }}</td>
+	</tr>
+	<tr>
+		<td class="coa-label">{{ _("Inspection") }}</td><td>{{ _(doc.inspection_type) }}</td>
+		<td class="coa-label">{{ _("Specification") }}</td><td>{{ doc.quality_inspection_template or "-" }}</td>
+	</tr>
+</table>
+
+<table class="table table-bordered table-condensed coa-results">
+	<thead>
+		<tr>
+			<th>{{ _("Parameter") }}</th>
+			<th class="text-center">{{ _("Specification") }}</th>
+			<th class="text-center">{{ _("Result") }}</th>
+			<th class="text-center">{{ _("Status") }}</th>
+		</tr>
+	</thead>
+	<tbody>
+	{%- for r in doc.readings %}
+		{%- set ns = namespace(total=0.0, count=0) %}
+		{%- for i in range(1, 11) %}
+			{%- set reading = r.get("reading_" ~ i) %}
+			{%- if reading not in (None, "") %}
+				{%- set ns.total = ns.total + (reading | float) %}
+				{%- set ns.count = ns.count + 1 %}
+			{%- endif %}
+		{%- endfor %}
+		<tr>
+			<td>{{ r.specification }}</td>
+			<td class="text-center">
+				{%- if r.numeric %}{{ "%g" | format(r.min_value or 0) }} - {{ "%g" | format(r.max_value or 0) }}
+				{%- else %}{{ r.value or "" }}{% endif -%}
+			</td>
+			<td class="text-center">
+				{%- if r.numeric %}{% if ns.count %}{{ "%.2f" | format(ns.total / ns.count) }}{% else %}-{% endif %}
+				{%- else %}{{ r.reading_value or "-" }}{% endif -%}
+			</td>
+			<td class="text-center coa-{{ r.status }}">{{ _(r.status or "") }}</td>
+		</tr>
+	{%- endfor %}
+	</tbody>
+</table>
+
+<div class="coa-conclusion">
+	<b>{{ _("Conclusion") }}:</b> <span class="coa-{{ doc.status }}">{{ _(doc.status or "") }}</span>
+	{%- if doc.remarks %} - {{ doc.remarks }}{% endif %}
+</div>
+
+<table class="coa-sign">
+	<tr>
+		<td>{{ _("Inspected by") }}: {{ doc.inspected_by or "" }}</td>
+		<td style="padding-left: 24px">{{ _("Verified by") }}: {{ doc.verified_by or "" }}</td>
+	</tr>
+</table>

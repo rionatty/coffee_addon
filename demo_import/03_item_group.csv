@@ -1,8 +1,16 @@
-item_group_name,parent_item_group,is_group
-Finished Goods,All Item Groups,1
-Raw Coffee,All Item Groups,0
-Screen 18,Finished Goods,0
-Screen 15,Finished Goods,0
-Screen 12,Finished Goods,0
-Undergrades,Finished Goods,0
-By-products,All Item Groups,0
+item_group_name,parent_item_group,is_group,item_group_defaults.company,item_group_defaults.default_warehouse,item_group_defaults.income_account,item_group_defaults.expense_account
+Raw Material,All Item Groups,1,,,,
+Finished Product,All Item Groups,1,,,,
+Robusta Grades,Finished Product,1,,,,
+Arabica Grades,Finished Product,1,,,,
+Raw Robusta,Raw Material,0,Ideal Commodities (U) Ltd,Robusta FAQ Store - ICL,,
+Raw Arabica,Raw Material,0,Ideal Commodities (U) Ltd,Arabica Parchment Store - ICL,,
+Robusta Grade 18,Robusta Grades,0,Ideal Commodities (U) Ltd,Robusta Screen 18 Store - ICL,41010111 - Robusta Screen 18 Sales - ICL,51010111 - Robusta Screen 18 Cost of Sales - ICL
+Robusta Grade 15,Robusta Grades,0,Ideal Commodities (U) Ltd,Robusta Screen 15 Store - ICL,41010112 - Robusta Screen 15 Sales - ICL,51010112 - Robusta Screen 15 Cost of Sales - ICL
+Robusta Grade 12,Robusta Grades,0,Ideal Commodities (U) Ltd,Robusta Screen 12 Store - ICL,41010113 - Robusta Screen 12 Sales - ICL,51010113 - Robusta Screen 12 Cost of Sales - ICL
+Robusta Undergrades,Robusta Grades,0,Ideal Commodities (U) Ltd,Robusta Undergrades Store - ICL,41010114 - Robusta Undergrade Sales - ICL,51010114 - Robusta Undergrade Cost of Sales - ICL
+Arabica Grade 18,Arabica Grades,0,Ideal Commodities (U) Ltd,Arabica Screen 18 Store - ICL,41010121 - Arabica Screen 18 Sales - ICL,51010121 - Arabica Screen 18 Cost of Sales - ICL
+Arabica Grade 15,Arabica Grades,0,Ideal Commodities (U) Ltd,Arabica Screen 15 Store - ICL,41010122 - Arabica Screen 15 Sales - ICL,51010122 - Arabica Screen 15 Cost of Sales - ICL
+Arabica Grade 12,Arabica Grades,0,Ideal Commodities (U) Ltd,Arabica Screen 12 Store - ICL,41010123 - Arabica Screen 12 Sales - ICL,51010123 - Arabica Screen 12 Cost of Sales - ICL
+Arabica Undergrades,Arabica Grades,0,Ideal Commodities (U) Ltd,Arabica Undergrades Store - ICL,41010124 - Arabica Undergrade Sales - ICL,51010124 - Arabica Undergrade Cost of Sales - ICL
+By-products,Finished Product,0,Ideal Commodities (U) Ltd,By-products Store - ICL,41010130 - By-product Sales - ICL,51010130 - By-product Cost of Sales - ICL

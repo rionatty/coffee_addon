@@ -1,14 +1,16 @@
 warehouse_name,parent_warehouse,company,is_group,account
-Robusta Stores,All Warehouses - ICL,Ideal Commodities (U) Ltd,1,
-Arabica Stores,All Warehouses - ICL,Ideal Commodities (U) Ltd,1,
-Robusta FAQ Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010111 - Robusta FAQ Stock - ICL
-Robusta Screen 18 Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010112 - Robusta Screen 18 Stock - ICL
-Robusta Screen 15 Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010113 - Robusta Screen 15 Stock - ICL
-Robusta Screen 12 Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010114 - Robusta Screen 12 Stock - ICL
-Robusta Undergrades Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010115 - Robusta Undergrades Stock - ICL
-Arabica Parchment Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010121 - Arabica Parchment Stock - ICL
-Arabica Screen 18 Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010122 - Arabica Screen 18 Stock - ICL
-Arabica Screen 15 Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010123 - Arabica Screen 15 Stock - ICL
-Arabica Screen 12 Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010124 - Arabica Screen 12 Stock - ICL
-Arabica Undergrades Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010125 - Arabica Undergrades Stock - ICL
-By-products Store,All Warehouses - ICL,Ideal Commodities (U) Ltd,0,12010130 - By-products Stock - ICL
+Raw Material Stores,All Warehouses - ICL,Ideal Commodities (U) Ltd,1,
+Finished Product Stores,All Warehouses - ICL,Ideal Commodities (U) Ltd,1,
+Robusta Stores,Finished Product Stores - ICL,Ideal Commodities (U) Ltd,1,
+Arabica Stores,Finished Product Stores - ICL,Ideal Commodities (U) Ltd,1,
+Robusta FAQ Store,Raw Material Stores - ICL,Ideal Commodities (U) Ltd,0,12010101 - Robusta FAQ Stock - ICL
+Arabica Parchment Store,Raw Material Stores - ICL,Ideal Commodities (U) Ltd,0,12010102 - Arabica Parchment Stock - ICL
+Robusta Screen 18 Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010311 - Robusta Screen 18 Stock - ICL
+Robusta Screen 15 Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010312 - Robusta Screen 15 Stock - ICL
+Robusta Screen 12 Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010313 - Robusta Screen 12 Stock - ICL
+Robusta Undergrades Store,Robusta Stores - ICL,Ideal Commodities (U) Ltd,0,12010314 - Robusta Undergrades Stock - ICL
+Arabica Screen 18 Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010321 - Arabica Screen 18 Stock - ICL
+Arabica Screen 15 Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010322 - Arabica Screen 15 Stock - ICL
+Arabica Screen 12 Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010323 - Arabica Screen 12 Stock - ICL
+Arabica Undergrades Store,Arabica Stores - ICL,Ideal Commodities (U) Ltd,0,12010324 - Arabica Undergrades Stock - ICL
+By-products Store,Finished Product Stores - ICL,Ideal Commodities (U) Ltd,0,12010330 - By-products Stock - ICL
